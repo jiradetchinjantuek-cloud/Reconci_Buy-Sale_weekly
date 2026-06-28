@@ -1,0 +1,24 @@
+.DS_Store
+Thumbs.db
+
+# Editor and local environment files
+.vscode/
+.idea/
+*.swp
+*.swo
+.env
+.env.*
+
+# Logs and temporary output
+*.log
+tmp/
+temp/
+
+# Python cache files, useful if reconciliation scripts are added later
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Spreadsheet lock files
+~$*.xlsx
+~$*.xls

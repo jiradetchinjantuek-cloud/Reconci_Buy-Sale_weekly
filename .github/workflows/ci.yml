@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  repository-health:
+    name: Repository health
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate README
+        run: |
+          test -s README.md
+          grep -q "Reconci_Buy-Sale_weekly" README.md
+
+      - name: Check for unwanted local files
+        run: |
+          if find . \
+            -path ./.git -prune -o \
+            \( -name ".DS_Store" -o -name "Thumbs.db" -o -name "*.log" \) \
+            -print | grep -q .; then
+            echo "Found local-only files that should not be committed."
+            exit 1
+          fi
